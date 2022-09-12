@@ -2,8 +2,9 @@ import pandas
 import twint
 from datetime import datetime, timedelta
 from mongo_db import MongoDB
+from sentiment_analysis import analyzeTweet
 
-def getTweets(query: str, coin: str):
+def getTweets(query: str, coin: str) -> None:
     print('Fetching tweets for query {}'.format(query))
     time = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=7)
     print(time.strftime("%Y-%m-%d %H:%M:%S"))
@@ -20,8 +21,13 @@ def getTweets(query: str, coin: str):
         
         tweets_df: pandas.DataFrame = twint.storage.panda.Tweets_df
         tweets_clean = tweets_df.drop(columns=["id", "conversation_id", "timezone", "place", "day", "hour", "link", "quote_url", "near", "geo", "source"])       
-        mongoDb = MongoDB()
-        mongoDb.storeTweets(tweets_to_store=tweets_clean, coin=coin)
+        mongoDb = MongoDB(coin)
+        tweets = tweets_clean.to_dict(orient="records")
+        
+        for tweet in tweets:
+            tweet = analyzeTweet(tweet)
+        
+        mongoDb.collection.insert_many(tweets)
 
     except Exception as e:
         print(e)

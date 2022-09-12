@@ -1,13 +1,16 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-from pymongo import MongoClient
 
-def getTweets(coin: str): 
-    client = MongoClient("")
-    db = client.Masterprojekt
-    tweets = db['tweets.{}'.format(coin)]
-    tweets_ = tweets.find()
-    
-    for tweet in tweets_:
-        print(tweet)
+def analyzeTweet(tweet: dict) -> dict:
+    analyzer = SentimentIntensityAnalyzer()
+ 
+    sentiment_result = analyzer.polarity_scores(tweet['tweet'])
+    tweet['sentiment_dict'] = sentiment_result
         
-getTweets("loopring")
+    if sentiment_result['compound'] >= 0.05:
+        tweet['sentiment'] = "pos"
+    elif sentiment_result['compound'] <= -0.05:
+        tweet['sentiment'] = "neg"
+    else:
+        tweet['sentiment'] = "neu"
+        
+    return tweet
