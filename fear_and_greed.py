@@ -1,7 +1,6 @@
 from datetime import date, datetime
 from xmlrpc.client import DateTime
 from dotenv import load_dotenv
-
 from mongo_db import MongoDB
 load_dotenv()
 import os

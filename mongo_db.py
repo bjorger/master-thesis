@@ -1,5 +1,5 @@
 import os
-from pymongo import MongoClient, cursor
+from pymongo import MongoClient
 from dotenv import load_dotenv
 load_dotenv()
 import os
