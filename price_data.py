@@ -4,7 +4,8 @@ from mongo_db import MongoDB
 from dotenv import load_dotenv
 load_dotenv()
 import os
-from pymongo import MongoClient
+import schedule
+import time
 
 lrc_ticker = os.environ.get("LRC_TICKER")
 stx_ticker = os.environ.get("STX_TICKER")
@@ -12,9 +13,7 @@ mongo_db_uri = os.environ.get("MONGO_DB_URI")
 mongo_db_table = os.environ.get("MONGO_DB_TABLE")
 
 def fetchPrice(ticker: str) -> None:
-    client = MongoClient(mongo_db_uri)
-    db = client[mongo_db_table]
-    mongoDb = db['tweets.{}'.format('{}_price_snapshots').format(ticker)]
+    client = MongoDB('{}_price_snapshots'.format(ticker))
     key = 'https://api.binance.com/api/v3/ticker/price?symbol={}USDT'.format(ticker.upper())
     data = requests.get(key)  
     data = data.json()
@@ -24,7 +23,12 @@ def fetchPrice(ticker: str) -> None:
         'price': data['price']
     }
     
-    mongoDb.insert_one(mongoDbObject)
+    client.collection.insert_one(mongoDbObject)
+    print("Successfully inserted {} price data".format(ticker))
     
-fetchPrice(lrc_ticker)
-fetchPrice(stx_ticker)
+schedule.every(30).minutes.do(lambda: fetchPrice(lrc_ticker))
+schedule.every(30).minutes.do(lambda: fetchPrice(stx_ticker))
+
+while True:
+    schedule.run_pending()
+    time.sleep(1)

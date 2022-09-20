@@ -3,6 +3,8 @@ import twint
 from datetime import datetime, timedelta
 from mongo_db import MongoDB
 from sentiment_analysis import analyzeTweet
+import schedule
+import time
 
 def getTweets(query: str, coin: str) -> None:
     print('Fetching tweets for query {}'.format(query))
@@ -28,19 +30,14 @@ def getTweets(query: str, coin: str) -> None:
             tweet = analyzeTweet(tweet)
         
         mongoDb.collection.insert_many(tweets)
+        print("Successfully uploaded tweets")
 
     except Exception as e:
         print(e)
         
-getTweets('$stx OR #stx', 'stacks')  
-getTweets('$lrc OR #lrc', 'loopring')
-
-"""
-schedule.every().day.at("00:00").do(lambda: getTweets('$stx OR #stx', 'stacks') )
-schedule.every().day.at("00:00").do(lambda: getTweets('$lrc OR #lrc', 'loopring'))
-
+schedule.every().monday.at("00:00").do(lambda: getTweets('$stx OR #stx', 'stacks'))
+schedule.every().monday.at("00:00").do(lambda: getTweets('$lrc OR #lrc', 'loopring'))
 
 while True:
     schedule.run_pending()
-    time.sleep(60)
-"""
+    time.sleep(1)
