@@ -17,3 +17,7 @@ https://it.cornell.edu/academic-web-dynamic-academic-web-static-managed-servers/
 # Run a python script 24/7
 
 https://victormerino.medium.com/running-a-python-script-24-7-in-cloud-for-free-amazon-web-services-ec2-76af166ae4fb
+
+# install the working version of twint
+
+pip3 install --user --upgrade git+https://github.com/twintproject/twint.git@origin/master#egg=twint
