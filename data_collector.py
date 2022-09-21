@@ -8,8 +8,14 @@ from bs4 import BeautifulSoup
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from datetime import datetime, timedelta
 from mongo_db import MongoDB
+from logger import Logger
 
 class DataCollector:
+    logger = None
+    
+    def __init__(self) -> None:
+        self.logger = Logger()
+    
     def fetchFearAndGreedIndex(self) -> None:
         resp = requests.get(os.environ.get("FEAR_AND_GREED_URL"))
         mongoDb = MongoDB(os.environ.get("FEAR_AND_GREED_COLLECTION"))
@@ -24,7 +30,7 @@ class DataCollector:
             'fear_and_greed_score': status_element_score.text
         }
         mongoDb.collection.insert_one(mongoDbObject)
-        print("Successfully uplodaded Fear and Greed Index")
+        self.logger.logger.info("Successfully uplodaded Fear and Greed Index")
         
         
     def fetchPrice(self, ticker: str) -> None:
@@ -44,7 +50,7 @@ class DataCollector:
         }
                 
         client.collection.insert_one(mongoDbObject)
-        print("Successfully inserted {} price data".format(ticker))
+        self.logger.logger.info("Successfully inserted {} price data".format(ticker))
     
     def analyzeTweet(self, tweet: dict) -> dict:
         analyzer = SentimentIntensityAnalyzer()
@@ -85,7 +91,7 @@ class DataCollector:
                 tweet = self.analyzeTweet(tweet)
             
             mongoDb.collection.insert_many(tweets)
-            print("Successfully uploaded tweets")
+            self.logger.logger.info("Successfully uploaded tweets")
 
         except Exception as e:
             print(e)
