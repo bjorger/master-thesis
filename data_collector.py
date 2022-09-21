@@ -30,16 +30,19 @@ class DataCollector:
     def fetchPrice(self, ticker: str) -> None:
         client = MongoDB('{}_price_snapshots'.format(ticker))
         uri_ticker_price = 'https://api.binance.com/api/v3/ticker/price?symbol={}USDT'.format(ticker.upper())
-        data = requests.get(uri_ticker_price)  
-        data = data.json()
+        data_price = requests.get(uri_ticker_price)  
+        data_price = data_price.json()
         
-        # https://api.binance.com/api/v3/aggTrades?symbol=BTCUSDT volume
+        uri_ticker_volume = 'https://api.binance.com/api/v3/ticker/24hr?symbol={}USDT'.format(ticker.upper())
+        data_volume = requests.get(uri_ticker_volume)  
+        data_volume = data_volume.json()
 
         mongoDbObject = {
             'created_at': datetime.now().timestamp(),
-            'price': data['price']
+            'price': data_price['price'],
+            **data_volume
         }
-        
+                
         client.collection.insert_one(mongoDbObject)
         print("Successfully inserted {} price data".format(ticker))
     
