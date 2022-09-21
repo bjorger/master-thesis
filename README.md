@@ -21,3 +21,8 @@ https://victormerino.medium.com/running-a-python-script-24-7-in-cloud-for-free-a
 # install the working version of twint
 
 pip3 install --user --upgrade git+https://github.com/twintproject/twint.git@origin/master#egg=twint
+
+# Binance API
+
+https://binance-docs.github.io/apidocs/spot/en/#market-data-endpoints
+https://binance-docs.github.io/apidocs/spot/en/#old-trade-lookup-market_data
