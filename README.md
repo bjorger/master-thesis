@@ -75,3 +75,4 @@ add tweet volume to variations as well
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7959635/
 
 https://www.kaggle.com/code/kmkarakaya/lstm-output-types-return-sequences-state/notebook
+https://bond-kirill-alexandrovich.medium.com/lstm-in-details-is-easy-501630afbcb9
