@@ -26,3 +26,52 @@ pip3 install --user --upgrade git+https://github.com/twintproject/twint.git@orig
 
 https://binance-docs.github.io/apidocs/spot/en/#market-data-endpoints
 https://binance-docs.github.io/apidocs/spot/en/#old-trade-lookup-market_data
+
+# Pytorch LSTM
+
+https://pytorch.org/docs/stable/generated/torch.nn.LSTM.html
+https://machinelearningmastery.com/time-series-prediction-lstm-recurrent-neural-networks-python-keras/
+https://medium.com/the-handbook-of-coding-in-finance/stock-prices-prediction-using-long-short-term-memory-lstm-model-in-python-734dd1ed6827
+https://bobrupakroy.medium.com/multi-variate-lstm-time-series-forecasting-1a736009f6d
+https://github.com/MohammadFneish7/Keras_LSTM_Diagram
+
+# Pytorch TCN
+
+https://www.kaggle.com/code/ceshine/pytorch-temporal-convolutional-networks/script
+
+# Experiments
+
+LSTM:
+
+-   BTC
+-   Stx
+-   Lrc
+-   BTC + Twitter Sentiment
+-   BTC + Reddit Sentiment
+-   BTC + Fear and Greed Index
+-   BTC + Twitter & Reddit Sentiment
+-   BTC + Fear and Greed Index + Twitter
+-   BTC + Fear and Greed Index + Reddit
+-   BTC + Fear and Greed Index + Reddit + Twitter
+-   Stx + Twitter Sentiment
+-   Stx + Reddit Sentiment
+-   Stx + Fear and Greed Index
+-   Stx + Twitter & Reddit Sentiment
+-   Stx + Fear and Greed Index + Twitter
+-   Stx + Fear and Greed Index + Reddit
+-   Stx + Fear and Greed Index + Reddit + Twitter
+-   Lrc + Twitter Sentiment
+-   Lrc + Reddit Sentiment
+-   Lrc + Fear and Greed Index
+-   Lrc + Twitter & Reddit Sentiment
+-   Lrc + Fear and Greed Index + Twitter
+-   Lrc + Fear and Greed Index + Reddit
+-   Lrc + Fear and Greed Index + Reddit + Twitter
+
+add tweet volume to variations as well
+
+# LSTM based sentiment
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7959635/
+
+https://www.kaggle.com/code/kmkarakaya/lstm-output-types-return-sequences-state/notebook
