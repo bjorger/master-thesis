@@ -3,11 +3,11 @@ import twint
 import os
 import requests
 from datetime import datetime
-from mongo_db import MongoDB
+from Models.helper.MongoDB import MongoDB
 from bs4 import BeautifulSoup
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from datetime import datetime, timedelta
-from mongo_db import MongoDB
+from Models.helper.MongoDB import MongoDB
 from logger import Logger
 
 class DataCollector:

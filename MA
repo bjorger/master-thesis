@@ -1,5 +1,5 @@
 Hypothese: Twitter Volume besser als Sentiment
-           Brauch ich 48 Einträge um den nächsten vorherzusagen, oder reichen 6? (oder weniger / mehr)
+Brauch ich 48 Einträge um den nächsten vorherzusagen, oder reichen 6? (oder weniger / mehr)
 Warum Loopring?
 Warum Stacks?
 Ermitteln ob geeignet für Twitter Analyse
@@ -8,12 +8,11 @@ Trainieren besser
 Architektur besser argumentieren (Architektur derzeit sehr klein)
 Twitterdaten (wieviele user sind involviert -> influenzer?)
 
-Reddit: Statistiken 
+Reddit: Statistiken
 Wieviele User schreiben über einen Coin in Reddit?
 Besser als Twitter
 Größere Bubble auf Reddit oder Twitter?
 Wer folgt von? Twitter -> reddit oder Reddit -> Twitter
-
 
 difference vader vs bert
 what is vader, what is bert
@@ -25,3 +24,19 @@ https://github.com/VinAIResearch/BERTweet
 https://huggingface.co/rabindralamsal/BERTsent
 
 https://medium.com/@pasdan/how-to-scrap-reddit-using-pushshift-io-via-python-a3ebcc9b83f4
+
+# Why Stacked LSTM?
+
+https://machinelearningmastery.com/stacked-long-short-term-memory-networks/
+
+# Why Stateful LSTM?
+
+https://datascience.stackexchange.com/questions/26663/when-to-use-stateful-lstm
+
+# Why does keras be like that
+
+https://stackoverflow.com/questions/43702481/why-does-keras-lstm-batch-size-used-for-prediction-have-to-be-the-same-as-fittin
+
+# TweetBERT
+
+https://arxiv.org/pdf/2010.11091.pdf
